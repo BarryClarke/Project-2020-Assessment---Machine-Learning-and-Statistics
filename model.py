@@ -1,9 +1,5 @@
-# flask for web app.
-import flask as fl
-# numpy for numerical work.
+# Numerical arrays
 import numpy as np
-
-#from flask import jsonify
 
 # Data frames.
 import pandas as pd
@@ -13,14 +9,6 @@ from sklearn.model_selection import train_test_split
 
 #Import tensorflow library required for Neural networks.
 import tensorflow.keras as kr
-
-# Create a new web app.
-app = fl.Flask(__name__)
-
-# Add root route.
-@app.route("/")
-def home():
-  return app.send_static_file('index.html')
 
 # Read in the powerproduction dataset from the Data folder in the repository. Although it is a text file, we can read it in as a csv file, such is the format of the data contained within.
 data = pd.read_csv('Data/powerproduction.txt')
@@ -53,35 +41,7 @@ model.add(kr.layers.Dense(1, activation='linear', kernel_initializer="glorot_uni
 model.compile(kr.optimizers.Adam(lr=0.001), loss='mean_squared_error')
 
 # Fit the training dataset to the above model and run 5000 epochs in batches of 10 at a time.
-model.fit(X_train, y_train, epochs=50, batch_size=10)
-#power = model.predict([20])
-#print("power: ", (power))
+model.fit(X_train, y_train, epochs=5000, batch_size=10)
 
-import json
-from json import JSONEncoder
-
-
-
-
-#print("Printing JSON serialized NumPy array")
-#print(encodedNumpyData)
-
-
-# Add uniform route.
-@app.route('/api/predict/<float:speed>')
-def predict(speed):
-  power1 = model.predict([speed])
-  #https://pynative.com/python-serialize-numpy-ndarray-into-json/
-  class NumpyArrayEncoder(JSONEncoder):
-    def default(self, obj):
-        if isinstance(obj, np.ndarray):
-            return obj.tolist()
-        return JSONEncoder.default(self, obj)
-  # Serialization
-  numpyData = {"array": power}
-  encodedNumpyData = json.dumps(numpyData, cls=NumpyArrayEncoder)  # use dump() to write array into file
-
-
-
-  return encodedNumpyData
-  #return {"value": np.random.uniform()}
+prediction = model.predict([0])
+print("Predicted Power: ", prediction)
