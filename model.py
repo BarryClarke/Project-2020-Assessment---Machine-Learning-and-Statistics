@@ -1,6 +1,10 @@
 # Numerical arrays
 import numpy as np
 
+#import jsonify
+#import json
+#from json import JSONEncoder
+
 # Data frames.
 import pandas as pd
 
@@ -10,38 +14,50 @@ from sklearn.model_selection import train_test_split
 #Import tensorflow library required for Neural networks.
 import tensorflow.keras as kr
 
-# Read in the powerproduction dataset from the Data folder in the repository. Although it is a text file, we can read it in as a csv file, such is the format of the data contained within.
-data = pd.read_csv('Data/powerproduction.txt')
+class Predict:
 
-df = pd.DataFrame(data)
+    def __init__(self):
+        # Read in the powerproduction dataset from the Data folder in the repository. Although it is a text file, we can read it in as a csv file, such is the format of the data contained within.
+        data = pd.read_csv('Data/powerproduction.txt')
 
-# delete any rows from the dataset where a zero Power output is recorded
-df = df[df.power != 0]
+        df = pd.DataFrame(data)
 
-# Select the columns of the DataFrame
-Speed = df['speed']
-Power = df["power"]
+        # delete any rows from the dataset where a zero Power output is recorded
+        df = df[df.power != 0]
 
-# Convert to arrays
-x = Speed.to_numpy()
-y = Power.to_numpy()
+        # Select the columns of the DataFrame
+        Speed = df['speed']
+        Power = df["power"]
 
-# Prepare the dataset for training and testing
-data = df.values
-# split into inpiut and output elements
-X, y = data[:, :-1], data[:, -1]
-# split into train and test sets
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.33, random_state=1)
+        # Convert to arrays
+        x = Speed.to_numpy()
+        y = Power.to_numpy()
 
-# Build a model using Keras
-model = kr.models.Sequential()
-# Change the hidden layer from 3 neurons to 5 neurons
-model.add(kr.layers.Dense(5, input_shape=(1,), activation='sigmoid', kernel_initializer="glorot_uniform", bias_initializer="glorot_uniform"))
-model.add(kr.layers.Dense(1, activation='linear', kernel_initializer="glorot_uniform", bias_initializer="glorot_uniform"))
-model.compile(kr.optimizers.Adam(lr=0.001), loss='mean_squared_error')
+        # Prepare the dataset for training and testing
+        data = df.values
+        # split into inpiut and output elements
+        X, y = data[:, :-1], data[:, -1]
+        # split into train and test sets
+        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.33, random_state=1)
 
-# Fit the training dataset to the above model and run 5000 epochs in batches of 10 at a time.
-model.fit(X_train, y_train, epochs=5000, batch_size=10)
+        # Build a model using Keras
+   
+        self.model = kr.models.Sequential()
+        # Change the hidden layer from 3 neurons to 5 neurons
+        self.model.add(kr.layers.Dense(5, input_shape=(1,), activation='sigmoid', kernel_initializer="glorot_uniform", bias_initializer="glorot_uniform"))
+        self.model.add(kr.layers.Dense(1, activation='linear', kernel_initializer="glorot_uniform", bias_initializer="glorot_uniform"))
+        self.model.compile(kr.optimizers.Adam(lr=0.001), loss='mean_squared_error')
 
-prediction = model.predict([0])
-print("Predicted Power: ", prediction)
+        # Fit the training dataset to the above model and run 5000 epochs in batches of 10 at a time.
+        self.model.fit(X_train, y_train, epochs=5000, batch_size=10)
+        #prediction = self.model.predict([12])
+        #print("Predicted Power: ", float(prediction))
+    
+    def calc(self, speed):
+        Speed = float(speed)
+        prediction = str('%.2f' %(self.model.predict([Speed])))
+        print("Predicted Power: ", prediction)
+        
+        return prediction
+    
+power1 = Predict()
