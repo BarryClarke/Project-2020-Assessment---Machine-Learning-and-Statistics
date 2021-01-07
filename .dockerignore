@@ -1,0 +1,11 @@
+.git
+Dockerfile
+.gitignore
+README.md
+__pycache__/
+*.py[cod]
+*$py.class
+.ipynb
+.pdf
+venv/
+Images/
