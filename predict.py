@@ -22,4 +22,4 @@ def power(speed):
   return jsonify(power1.calc(speed))
 
 if __name__=="__main__":
-  app.run(debug=True)
+  app.run(debug=False)
