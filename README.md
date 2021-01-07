@@ -36,6 +36,9 @@ python -m flask run<br><br>
 
 You should see the Flask server start, following by the neural network initialise. This neural network consists of 5000 epochs, so it takes a number of minutes to run though the model. Once the model has been trained, the command prompt will show the http://127.0.0.1:5000/ address. Copy this, open your web browser and paste into the location bar. The web service should appear. Using this web service, input values for windspeed and click Predict power. A power prediction based on the model trained will appear.
 
+The web service can also be run in a virtual environment. In this case, requirements.txt file contains all the necessary packages to allow the web service operate. These will need to be installed in the vitrual environment.
+
+
 
 
 
