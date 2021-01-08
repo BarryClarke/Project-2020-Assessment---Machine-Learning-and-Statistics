@@ -20,7 +20,7 @@ A Jupyter notebook: The dataset (powerproduction.txt) is read in from the Data f
 To view the source code in jupyter notebook, please follow the below instructions:
 1. In this repoistory (ie Project-2020-Assessment---Machine-Learning-and-Statistics) click on the clone or download button and copy the URL
 2. In cmder/command prompt on your system, clone the repository using the command git clone followed by paste the URL
-3. Go to the directory where you saved cloned the Repository
+3. Go to the directory where you saved the cloned Repository
 4. Type "jupyter notebook" for the repository to open in jupyter
 5. When Jupyter notebook opens, model.ipynb file
 6. In this file, locate the *Kernal* tab and select *Restart & Run All* <br>
@@ -33,25 +33,31 @@ To view the source code contained within Predict.py and model.py, open visual St
 
 ### Web service
 #### On Windows
-To run the seb service, open the cmd or cmder prompt, navigate to the above folder once again, and type the following commands<br><br>
+To run the seb service, open the cmd or cmder prompt, navigate to the directory where you saved the cloned Repository, and type the following commands<br>
    
-set FLASK_APP=rando.py<br><br>
+set FLASK_APP=predict.py<br>
     
-python -m flask run<br><br>
+python -m flask run<br>
 
 You should see the Flask server start, following by the neural network initialise. This neural network consists of 5000 epochs, so it takes a number of minutes to run though the model. Once the model has been trained, the command prompt will show the http://127.0.0.1:5000/ address. Copy this, open your web browser and paste into the location bar. The web service should appear. Using this web service, input values for windspeed and click Predict power. A power prediction based on the model trained will appear.
 
 #### In a virtual Environmet
-The web service can also be run in a virtual environment. In this case, requirements.txt file contains all the necessary packages to allow the web service operate. These will need to be installed in the vitrual environment.
+The web service can also be run in a virtual environment. In this case, requirements.txt file contains all the necessary packages to allow the web service operate. These will need to be installed in the vitrual environment. Once a vitrual environment is created and the contents of the requirements.txt installed, the virtual environment can be used to run the web service. To to this, from the directory where you saved the cloned Repository type the followong commands<br>
+
+.\venv\Scripts\activate.bat<br>
+
+python predict.py<br>
+
+You should see the neural network initialise, and the Flask app "predict" start. Once again, this neural network consists of 5000 epochs, so it takes a number of minutes to run though the model. Once the model has been trained and the Flask app started, the command prompt will show the http://127.0.0.1:5000/ address. Copy this, open your web browser and paste into the location bar. The web service should appear. Using this web service, input values for windspeed and click Predict power. A power prediction based on the model trained will appear.
 
 #### On Docker
-To run the web service on docker, navigate to the above folder once again, and type the following commands<br><br>
+Finally, the web service is capable of running on Docker. To run the web service on docker, navigate to the directory where you saved the cloned Repository once again, and type the following commands<br>
 
-docker build . -t predict-app .<br><br>
+docker build -t predict-app .<br>
 
-docker run -d -p 5000:5000 predict-app
+docker run -d -p 5000:5000 predict-app<br>
 
-
+After the first command, it may time some time to build a container for the web service. Once built, the second commane will run the web service, which can be viewed at http://127.0.0.1:5000/.
 
 
 

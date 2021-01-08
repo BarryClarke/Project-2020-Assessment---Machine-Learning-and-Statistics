@@ -48,7 +48,7 @@ class Predict:
         self.model.compile(kr.optimizers.Adam(lr=0.001), loss='mean_squared_error')
 
         # Fit the training dataset to the above model and run 5000 epochs in batches of 10 at a time.
-        self.model.fit(X_train, y_train, epochs=5, batch_size=10)
+        self.model.fit(X_train, y_train, epochs=5000, batch_size=10)
     
     def calc(self, speed):
         Speed = float(speed)

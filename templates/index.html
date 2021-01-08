@@ -14,6 +14,9 @@
     <!--Include Bootstrap-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" 
     integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
+    <!--Prevent browser searching for favicon-->
+    <link rel="icon" href="data:,">
     
     <!-- CSS Code -->
     <style type="text/CSS">	
@@ -93,16 +96,27 @@
         // Script for when Predict Power button is clicked
         $("#predict-button").click(function(e) {
           speed = document.getElementById("input").value
+          // If user enters a negative value
           if (speed < 0){
             alert("Cannot have a negative wind speed. Please enter a correct value");
+            $('#input').val("")
+            $('#output').val("")
           }
+          // If user enters a 0 value
+          else if (speed == 0){
+            $('#output').val("0")
+          }
+          // If user enters text
           else if(isNaN(speed)){
             alert("Must input numbers only");
+            $('#input').val("")
+            $('#output').val("")
           }
-          e.preventDefault();
+          else{
           $.getJSON("/api/predict/"+speed, function(data) {
             $('#output').val(data);
             });
+          }
         });
 
     </script>
