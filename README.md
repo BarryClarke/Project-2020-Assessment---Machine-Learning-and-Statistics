@@ -1,8 +1,8 @@
-# <div align="center">Final Project - Machine Learning and Statistics 20-21 52954</div>
-# <div align="center">Author - Barry Clarke</div>
-# <div align="center">Student Number: G00376293 [1]</div>
-
 ![Web-Service](Images/WebService.JPG)
+
+## <div align="center">Final Project - Machine Learning and Statistics 20-21 52954</div>
+## <div align="center">Author - Barry Clarke</div>
+## <div align="center">Student Number: G00376293 [1]</div>
 
 Repository for the final project within Machine Learning and Statistics module
 
