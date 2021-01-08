@@ -59,7 +59,32 @@ docker build -t predict-app .<br>
 
 docker run -d -p 5000:5000 predict-app<br>
 
-After the first command, it may time some time to build a container for the web service. Once built, the second command will run the web service, which can be viewed at http://127.0.0.1:5000/.
+After the first command, it may time some time to build a container for the web service. Once built, the second command will run the web service, which can be viewed at http://127.0.0.1:5000/
+
+## References
+In creating this repository, the below references were used<br>
+1. https://en.wikipedia.org/wiki/Wind_turbine_design#Design_specification
+2. https://towardsdatascience.com/ways-to-detect-and-remove-the-outliers-404d16608dba 
+3. https://github.com/ianmcloughlin/jupyter-teaching-notebooks/blob/master/regression.ipynb
+4. https://en.wikipedia.org/wiki/Least_squares
+5. https://numpy.org/doc/stable/reference/generated/numpy.polyfit.html
+6. https://scikit-learn.org/
+7. https://towardsdatascience.com/machine-learning-basics-polynomial-regression-3f9dd30223d1
+8. https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LinearRegression.html
+9. https://statisticsbyjim.com/glossary/ordinary-least-squares/
+10. https://statisticsbyjim.com/regression/interpret-r-squared-regression/
+11. https://towardsdatascience.com/r-squared-recipe-5814995fa39a
+12. https://en.wikipedia.org/wiki/Gradient_descent
+13. https://www.tensorflow.org/tutorials
+14. https://www.tensorflow.org/api_docs/python/tf/keras/initializers/GlorotUniform
+15. https://keras.io/api/optimizers/adam/
+16. https://stackoverflow.com/questions/1321878/how-to-prevent-favicon-ico-requests
+17. https://stackoverflow.com/questions/39579666/how-to-set-background-image-on-flask-templates/39579810
+18. https://getbootstrap.com/docs/5.0/forms/form-control/
+19. https://www.w3schools.com/jquery/jquery_dom_get.asp
+20. https://learnonline.gmit.ie/course/view.php?id=1121
+
+
 
 
 

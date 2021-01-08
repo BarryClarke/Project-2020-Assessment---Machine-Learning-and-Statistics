@@ -9,6 +9,7 @@ from flask import jsonify
 from model import power1
 
 # Import render_template to enable background image display on Web Server
+# https://stackoverflow.com/questions/39579666/how-to-set-background-image-on-flask-templates/39579810
 from flask import render_template
 
 # Create a new web app.
