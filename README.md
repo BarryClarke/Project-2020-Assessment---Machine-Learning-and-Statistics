@@ -2,6 +2,7 @@
 # <div align="center">Author - Barry Clarke</div>
 # <div align="center">Student Number: G00376293 [1]</div>
 
+![Web-Service](Images/WebService.PNG)
 
 Repository for the final project within Machine Learning and Statistics module
 

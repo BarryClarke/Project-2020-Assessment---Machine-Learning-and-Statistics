@@ -1,3 +1,6 @@
+# See model.ipynb for development and analysis of ML models considered for this project
+# The model below was chosen to be used in the Web Service 
+
 # Numerical arrays
 import numpy as np
 
@@ -45,9 +48,7 @@ class Predict:
         self.model.compile(kr.optimizers.Adam(lr=0.001), loss='mean_squared_error')
 
         # Fit the training dataset to the above model and run 5000 epochs in batches of 10 at a time.
-        self.model.fit(X_train, y_train, epochs=5000, batch_size=10)
-        #prediction = self.model.predict([12])
-        #print("Predicted Power: ", float(prediction))
+        self.model.fit(X_train, y_train, epochs=5, batch_size=10)
     
     def calc(self, speed):
         Speed = float(speed)

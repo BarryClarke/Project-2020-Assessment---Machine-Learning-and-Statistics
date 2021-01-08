@@ -11,11 +11,7 @@
     <!-- Include the jQuery library-->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-    <!-- Include Bootstrap-->
-		<!--<link rel="stylesheet"
-		href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">-->
-
+    <!--Include Bootstrap-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" 
     integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     
@@ -28,6 +24,7 @@
 				padding: 60px 20px 20px 20px;
 				margin: 0px 20px 0px 0px;
 				color: black;
+        
 				text-align: center;}
       
       .instructions{
@@ -40,7 +37,8 @@
 				text-align: center;}
 
 			body{
-        background-color: rgb(90, 102, 209);}
+        background-image:url('static/Images/turbines.JPG');
+        background-size: cover;}
 
       .container-fluid{
         float: left;
@@ -51,9 +49,9 @@
   </head>
 
   <body> 
-    
+      <!--The below div is only used for viewing the html page locally. Not required for viewing Web Service with flask-->
+      <!--<div style="background-image: url('../images/turbines.JPG')">-->
       <h1 class="titlebar">Turbine Power Calculator</h1>
-    
     
       <h2 class="instructions">Enter the expected wind speed and click Predict Power</h2>
 
@@ -86,22 +84,24 @@
       <div class="container-fluid">
         <button type="button" class="btn btn-light btn-lg" id="predict-button">Predict Power</button>
       </div>
+      <!--</div>-->
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
-    <!--<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
 
     <script>
-        // Adapted from stack overflow posts.
+        // Script for when Predict Power button is clicked
         $("#predict-button").click(function(e) {
           speed = document.getElementById("input").value
-          console.log(speed)
+          if (speed < 0){
+            alert("Cannot have a negative wind speed. Please enter a correct value");
+          }
+          else if(isNaN(speed)){
+            alert("Must input numbers only");
+          }
           e.preventDefault();
           $.getJSON("/api/predict/"+speed, function(data) {
-            console.log(data)
             $('#output').val(data);
-            console.log(data)
-            
             });
         });
 
